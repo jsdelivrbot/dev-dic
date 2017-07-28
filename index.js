@@ -1,18 +1,37 @@
-var express = require('express');
+var express = require('express'),
+    bodyP = require('body-parser'),
+    twig = require('twig'),
+    md5 = require('md5'),
+    session = require('express-session'),
+    randomstring = require("randomstring"),
+    path = require('path'),
+    mysql = require('mysql');
+
+
 var app = express();
+//configuration//////////////////////////////////////////////////////////:
+app.use(bodyP.urlencoded({ extended: true }));
+app.use(session( {
+  secret : '12345',
+  resave: false,
+  saveUninitialized: false,
+  }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyP.json()); // for parsing application/json
 
-app.set('port', (process.env.PORT || 5000));
 
-app.use(express.static(__dirname + '/public'));
-
-// views is directory for all template files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+var db    = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'root',
+  database : 'doodle'
+});
+    
 
 app.get('/', function(request, response) {
-  response.send('pages/index');
+  response.render('pages/index.twig');
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
 });
