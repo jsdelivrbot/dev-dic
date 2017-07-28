@@ -29,9 +29,8 @@ var db    = mysql.createConnection({
     
 
 app.get('/', function(request, response) {
-  response.render('pages/index.twig');
+  response.render('/pages/index.twig');
 });
 
 app.listen(app.get('port'), function() {
  console.log('Node app is running on port', app.get('port'));
-
