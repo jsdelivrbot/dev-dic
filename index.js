@@ -32,7 +32,9 @@ app.get('/', function(request, response) {
   response.render('pages/index.twig');
 });
 
-
+app.get('/test', function(request, response) {
+  response.send('pages/index.twig');
+});
 
 
 app.listen(app.get('port'), function() {
