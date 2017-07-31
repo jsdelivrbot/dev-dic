@@ -37,7 +37,7 @@ app.get('/test', function(request, response) {
 });
 
 
-app.listen(app.get('port'), function() {
+app.listen(process.env.PORT , function() {
  console.log('Node app is running on port', app.get('port'));
 
  });
