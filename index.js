@@ -34,15 +34,15 @@ app.get('/', function(request, response) {
 
 /*
 
-*/
+
 app.listen(app.get('port'), function() {
  console.log('Node app is running on port', app.get('port'));
- 
- });
 
-/*
+ });
+*/
+
 app.listen(3000, function () {
  console.log('Example app listening on port 3000!');
  });
  
-*/
+
